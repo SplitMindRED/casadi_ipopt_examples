@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot name="rock">
+  <link name="world"/>
+  <joint name="world_static_joint" type="fixed">
+      <origin rpy="0 1.57 0" xyz="0 0 2"/>
+      <parent link="world"/>
+      <child link="slide_bar"/>
+  </joint>
+
+  <link name="slide_bar">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <box size="300 0.01 0.01"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.75 0.75 0.75 1.0"/>
+      </material>
+    </visual>
+      <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+  </link>
+
+  <joint name="slider_to_cart" type="prismatic">
+    <axis xyz="-1 0 0"/>
+    <origin xyz="0.0 0.0 0.0"/>
+    <parent link="slide_bar"/>
+    <child link="rock"/>
+    <limit effort="100000.0" lower="-150" upper="150" velocity="50"/>
+    <dynamics damping="0.0" friction="1000.0"/>
+  </joint>
+
+  <link name="rock">
+    <visual>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0"/>
+      <material name="red">
+        <color rgba="1.0 0 0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="3"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+</robot>

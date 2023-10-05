@@ -1,0 +1,12 @@
+<launch>
+  <arg name="name" default="name"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="world_to_$(arg name)_tf_broadcaster"  args="0 0 0 0 0 0 world $(arg name)/world 100"/>
+
+  <param name="$(arg name)/description" command="$(find xacro)/xacro $(find casadi_ipopt_examples)/description/cart_pendulum_model.urdf"/>
+  <node name="$(arg name)_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <remap from="robot_description" to="$(arg name)/description" />
+    <remap from="joint_states" to="$(arg name)/joint_state"/>
+    <param name="tf_prefix" type="string" value="$(arg name)" />
+  </node>
+</launch>

@@ -1,0 +1,23 @@
+<launch>
+  <arg name="x_0" default="x_0"/>
+  <arg name="x_1" default="x_1"/>
+  <arg name="x_2" default="x_2"/>
+  <arg name="x_3" default="x_3"/>
+
+  <include file="$(find casadi_ipopt_examples)/launch/prediction.launch">
+    <arg name="name" value="$(arg x_0)" />
+  </include>
+
+  <include file="$(find casadi_ipopt_examples)/launch/prediction.launch">
+    <arg name="name" value="$(arg x_1)" />
+  </include>
+
+  <include file="$(find casadi_ipopt_examples)/launch/prediction.launch">
+    <arg name="name" value="$(arg x_2)" />
+  </include>
+
+  <include file="$(find casadi_ipopt_examples)/launch/prediction.launch">
+    <arg name="name" value="$(arg x_3)" />
+  </include>
+
+</launch>
